@@ -17,10 +17,10 @@ TITLE "extr-NNLO-NNLL-NNPDF23-nnlo-FFN-NF5"
 NOBS 1
 
 # The next line must have 2 fields: 'NMEA' and the number of measurements.
-NMEA 4
+NMEA 5
 
 # The next line must have 2 fields: 'NERR' and the number of error sources.
-NERR 3
+NERR 7
 
 # The next NERR+3 lines must have NMEA+1 fields in this format:
 # - in the 1st line: 'MEANAME' followed by NMEA distinct measurement names
@@ -33,12 +33,16 @@ NERR 3
 # - in each of the last NERR lines: the error source name followed by the 
 #   NMEA partial errors for each measurement due to the given error source
 #   (error source names may contain only alphanumeric characters or spaces).
-MEANAME  CMS7000     CMS8000     ATLAS7000   ATLAS8000 
-OBSNAME  as          as          as          as        
-MEAVAL   118.374850  117.458350  120.523750  116.830450
-stat     0.542670    0.248365    0.778249    0.327751  
-syst     1.098557    1.155449    1.054066    1.059511  
-lumi     0.982396    1.241449    0.903766    1.444746  
+MEANAME  CMS8000         ATLAS7000       TEV1960         ATLAS8000       CMS7000       
+OBSNAME  as              as              as              as              as            
+MEAVAL   117.45835       120.52375       120.25465       116.83045       118.37485     
+stat     0.248364716669  0.778248531402  1.52018351923   0.327751254371  0.542670309451
+scale    1.4394495771    1.32182090923   1.20753639615   1.45131801946   1.36157005665 
+syst     1.15544897392   1.05406552007   2.20386000168   1.05951052055   1.09855660533 
+mtop     1.78585676449   1.68637482044   1.29926280557   1.80894379498   1.71616225589 
+lumi     1.24144864394   0.903766407229  1.59631902316   1.44474556132   0.982396205324
+pdf      1.27167080005   1.30634939403   0.939531689664  1.28290763066   1.34521038163 
+Ebeam    0.783066966123  0.828392589421  0.0             0.809340859109  0.74963246197 
 
 # The next NMEA*(NMEA-1)/2+1 rows must have NERR+2 fields in this format:
 # - in the 1st line: 'CMEA1' 'CMEA2' (correlations between 2 measurements)
@@ -47,10 +51,14 @@ lumi     0.982396    1.241449    0.903766    1.444746
 #   measurements followed by the NERR correlations between the partial 
 #   errors on the two measurements due to corresponding error source.
 #   Measurements must appear in the same order listed above.
-CMEA1      CMEA2      stat      syst      lumi    
-CMS7000    CMS8000    0.000000  1.000000  0.000000
-CMS7000    ATLAS7000  0.000000  0.000000  0.507836
-CMS7000    ATLAS8000  0.000000  0.000000  0.500000
-CMS8000    ATLAS7000  0.000000  0.000000  0.500000
-CMS8000    ATLAS8000  0.000000  0.000000  0.314437
-ATLAS7000  ATLAS8000  0.000000  1.000000  0.000000
+CMEA1      CMEA2      stat  scale  syst  mtop  lumi          pdf             Ebeam
+CMS8000    ATLAS7000  0.0   1.0    0.0   1.0   0.5           0.99738933679   1.0  
+CMS8000    TEV1960    0.0   0.5    0.0   1.0   0.0           0.141743611514  0.0  
+CMS8000    ATLAS8000  0.0   1.0    0.0   1.0   0.3144367857  1.0             1.0  
+CMS8000    CMS7000    0.0   1.0    1.0   1.0   0.0           0.99738933679   1.0  
+ATLAS7000  TEV1960    0.0   0.5    0.0   1.0   0.0           0.181643038927  0.0  
+ATLAS7000  ATLAS8000  0.0   1.0    1.0   1.0   0.0           0.99738933679   1.0  
+ATLAS7000  CMS7000    0.0   1.0    0.0   1.0   0.5078355455  1.0             1.0  
+TEV1960    ATLAS8000  0.0   0.5    0.0   1.0   0.0           0.141743611514  0.0  
+TEV1960    CMS7000    0.0   0.5    0.0   1.0   0.0           0.181643038927  0.0  
+ATLAS8000  CMS7000    0.0   1.0    0.0   1.0   0.5           0.99738933679   1.0  
